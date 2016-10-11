@@ -1,0 +1,38 @@
+<div ng-controller="cartCtrl">
+    <section>
+        <table class="table table-hover" ng-show="items.length">
+            <caption>AngularJS Delivery List</caption>
+            <tr>
+                <th>Order</th>
+                <th>Item Info</th>
+                <th>Unit Weight</th>
+                <th>WareHouse Location</th>
+                <th>Delivery Address</th>
+
+
+            </tr>
+            <tr ng-repeat="item in items" draggable="true" id="{{item.id}}" ondragstart="handleDragStart(event)">
+                <td>{{$index + 1}}</td>
+                <td><a href="{{item.linkUrl}}" target="_blank" title="This link will lead to other pages..">{{item.title}}</a></td>
+                <td class="bold">{{item.weight|number:2}}</td>
+                <td>{{item.city}}</td>
+                <td>{{item.deliTo}}</td>
+            </tr>
+        </table>
+    </section>
+
+
+    <div class="empty" ng-show="!items.length">Shopping Cart is empty，Let's hunt!</div>
+    <div class="total">
+        Goods selected：<span>{{getQuantites()}} </span>
+        Total：
+        <span class=" mark" ng-show="getTotalAmount()<15000">{{getTotalAmount()|number:2}}</span>
+        <span class=" mark" ng-show="getTotalAmount()>=15000">
+         {{getTotalAmount()*discount|number:2}}<span class="btn btn-xs">(90% Discount)</span>
+         <span class="discount">({{getTotalAmount()|number:2}})</span>
+         </span>
+        <button type="button" class="btn btn-primary btn-sm" ng-click="submitToPay()" >Proceed to Pay</button>
+    </div>
+
+
+</div>

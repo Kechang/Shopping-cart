@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="cart">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome to ShoppingCart</title>
+    <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/app.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular-route.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular-animate.js"></script>
+    <script src="//unpkg.com/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="vs-google-autocomplete.js"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDp0HjB_Hj2oNnZIqfEv5GdscMA5y-0c6M&libraries=places"></script>
+    <script src="cart.js"></script>
+    <script src="dividepage.js"></script>
+    <style>.active { color: red; font-weight: bolder; }</style>
+</head>
+<body ng-controller="HeaderCtrl">
+    <div id="header-wrapper" >
+        <span class="logo pull-left">{{appDetails.title}}</span>
+        <span class="tagline pull-left">{{appDetails.tagline}}</span>
+        <div class="nav-wrapper pull-left">
+            <ul class="nav nav-pills">
+                <li><a ui-sref="items" ui-sref-active="active">Items</a> </li>
+                <li><a ui-sref="cart" ui-sref-active="active">Cart</a> </li>
+            </ul>
+        </div>
+    </div>
+
+    <ui-view></ui-view>
+
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="cart">
+<head>
+    <meta charset="UTF-8">
+    <title>Mailing Address</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular-route.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular-animate.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDp0HjB_Hj2oNnZIqfEv5GdscMA5y-0c6M&libraries=places"></script>
+    <script src="cart.js"></script>
+    <script src="mailing.js"></script>
+    <script src="dividepage.js"></script>
+    <script src="vs-google-autocomplete.js"></script>
+
+</head>
+<body>
+<div ng-controller="cartCtrl">
+    <div class="empty" ng-show="!items.length">Shopping Cart is empty，Let's hunt!</div>
+    <div class="total">
+        Goods selected：<span>{{getQuantites()}} </span>
+        Total：
+        <span class=" mark" ng-show="getTotalAmount()<15000">{{getTotalAmount()|number:2}}</span>
+        <span class=" mark" ng-show="getTotalAmount()>=15000">
+         {{getTotalAmount()*discount|number:2}}<span class="btn btn-xs">(90% Discount)</span>
+         <span class="discount">({{getTotalAmount()|number:2}})</span>
+         </span>
+    </div>
+</div>
+
+
+
+<div ng-controller="AddrCtrl">
+    <h3> Mailing Address</h3>
+    <div class="form-group">
+        <label> Enter the Address for delivery</label>
+        <input vs-google-autocomplete
+               ng-model="address.name"
+
+               vs-street-number="address.components.streetNumber"
+               vs-street="address.components.street"
+               vs-city="address.components.city"
+               vs-state="address.components.state"
+               vs-country="address.components.country"
+               vs-post-code="address.components.postCode"
+
+               type="text"
+               name="address"
+               id="address"
+               class="form-control"
+               placeholder="Hogwarts School of Witchcraft and Wizardry ">
+    </div>
+
+    <!-- Address Auto-Fill -->
+
+
+    <div class="form-group">
+
+        <span class="help-block"><b>Street: </b>{{address.components.streetNumber}} {{address.components.street}}</span><br>
+        <span class="help-block"><b>City: </b>{{address.components.city}}</span><br>
+        <span class="help-block"><b>State: </b>{{address.components.state}}</span><br>
+        <span class="help-block"><b>Country: </b>{{address.components.country}}</span><br>
+        <span class="help-block"><b>Zipcode: </b>{{address.components.postCode}}</span><br>
+    </div>
+</div>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+<div ng-controller="shopCtrl">
+    <section>
+        <table class="table table-hover" ng-show="items.length">
+            <caption>AngularJS Shopping List</caption>
+            <tr>
+                <th>Order</th>
+                <th>Item Info</th>
+                <th>Unit Price</th>
+                <th>Location</th>
+                <th>Options</th>
+
+
+            </tr>
+            <tr ng-repeat="item in items" draggable="true" id="{{item.id}}" ondragstart="handleDragStart(event)">
+                <td>{{$index + 1}}</td>
+                <td><a href="{{item.linkUrl}}" target="_blank" title="This link will lead to other pages..">{{item.title}}</a></td>
+                <td class="bold">{{item.price|number:2}}</td>
+                <td>{{item.city}}</td>
+                <td>
+                    <button type="button" class="btn btn-default btn-xs" ng-click="addToCart(item)">Add to Cart</button>
+                </td>
+            </tr>
+        </table>
+    </section>
+    <section droppable="true" ondrop="handleDrop(event)" ><div align="right">Drop here:<br><img src="images/shopping-cart-3-64x64.png" class="btn btn-default btn-xs" style=" background-color: cornflowerblue;  "/></div> </section>
+
+
+</div>
+

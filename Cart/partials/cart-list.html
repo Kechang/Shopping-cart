@@ -1,0 +1,54 @@
+<div ng-controller="cartCtrl">
+    <table class="table table-hover" ng-show="items.length">
+        <caption>AngularJS Shopping Cart</caption>
+        <tr>
+            <th>Order</th>
+            <th>Item Info</th>
+            <th>Unit Price</th>
+            <th>Quantity</th>
+            <th>Amount</th>
+            <th>Weight(Pounds)</th>
+            <th>Delivery to</th>
+            <th>Options</th>
+
+
+
+        </tr>
+        <tr ng-repeat=" item in items" >
+            <td>{{$index + 1}}</td>
+            <td><a href="{{item.linkUrl}}" target="_blank" title="此链接将跳转到淘宝相关页面...">{{item.title}}</a></td>
+            <td class="bold">{{item.price|number:2}}</td>
+            <td>
+                <button type="button" class="btn btn-default btn-xs" ng-click="reduce(item.id)" ng-disabled="item.quantity<=0">－</button>
+                <input type="text" size="5" ng-model="item.quantity" ng-keydown="quantityKeydown()" ng-keyup="quantityKeyup()" >
+                <button type="button" class="btn btn-default btn-xs" ng-click="add(item.id)">＋</button>
+            </td>
+            <td class="bold mark" >{{item.price*item.quantity|number:2}}</td>
+            <td>{{item.weight*item.quantity|number:2}}</td>
+            <td><input type="text" ng-model="item.deliTo"
+                       vs-google-autocomplete
+                       ng-model="address.name"
+
+                       vs-street-number="address.components.streetNumber"
+                       vs-street="address.components.street"
+                       vs-city="address.components.city"
+                       vs-state="address.components.state"
+                       vs-country="address.components.country"
+                       vs-post-code="address.components.postCode"
+
+                       type="text"
+                       name="address"
+                       id="address"
+                       class="form-control"
+                       placeholder="Please enter your delivery address... "></td>
+            <td>
+                <button type="button" class="btn btn-default btn-xs" ng-click="delete(item.id)">Delete</button>
+            </td>
+
+
+        </tr>
+    </table>
+
+    <br><br>
+    <div my-address></div>
+</div>
